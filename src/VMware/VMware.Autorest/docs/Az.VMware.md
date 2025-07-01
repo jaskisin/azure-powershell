@@ -1,6 +1,6 @@
 ---
 Module Name: Az.VMware
-Module Guid: 6bee2b60-5b08-4f28-b776-6dfda4fc70db
+Module Guid: 2111f8b7-5715-474c-9805-14be16a34630
 Download Help Link: https://learn.microsoft.com/powershell/module/az.vmware
 Help Version: 1.0.0.0
 Locale: en-US
