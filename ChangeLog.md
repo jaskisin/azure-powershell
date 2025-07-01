@@ -1,3 +1,18 @@
+## 14.3.0 - August 2025
+#### Az.Migrate 2.8.1
+* Fixed bugs in 'New-AzMigrateServerReplication' caused by deprecation of 'Get-AzVmSize -location'
+
+#### Az.MySql 1.5.0
+- Aligned with SimplySql, use a PSCredential object instead of UserName/Password parameters when calling Open-MySQLConnection
+- Introduced a Timeout value when running Test-AzMySqlFlexibleServerConnect with long running query
+
+#### Az.Network 7.18.1
+* Updated cmdlet 'New-AzFirewallPolicyApplicationRule' to use HTTPS as the default protocol when creating a new FQDN Tag application rule.
+
+#### Az.PostgreSql 1.4.0
+- Aligned with SimplySql, use a PSCredential object instead of UserName/Password parameters when calling Open-PostGreConnection
+- Introduced a Timeout value when running Test-AzPostgreSqlFlexibleServerConnect with long running query
+
 ## 14.2.0 - July 2025
 #### Az.Accounts 5.1.1
 * Updated the date in the message about multi-factor authentication (MFA). For more details, see https://go.microsoft.com/fwlink/?linkid=2276971

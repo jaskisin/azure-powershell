@@ -1,3 +1,11 @@
+## 14.3.0 - August 2025
+#### Az.MySql 1.5.0 
+* Modified cmdlet `Test-AzMySqlFlexibleServerConnect`
+   - Added parameter `-Timeout`
+#### Az.PostgreSql 1.4.0 
+* Modified cmdlet `Test-AzPostgreSqlFlexibleServerConnect`
+   - Added parameter `-Timeout`
+
 ## 14.2.0 - July 2025
 #### Az.Network 7.18.0 
 * Modified cmdlet `New-AzApplicationGatewayFirewallPolicyManagedRule`
@@ -515,6 +523,7 @@
 #### Az.Storage 9.0.0 
 * Modified cmdlet `Start-AzStorageAccountMigration`
    - Added parameter `-Force`
+
 
 
 
