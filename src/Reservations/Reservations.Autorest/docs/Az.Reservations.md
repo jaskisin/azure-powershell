@@ -1,6 +1,6 @@
 ---
 Module Name: Az.Reservations
-Module Guid: c2d95a4e-b23f-4c3a-84b1-f8221d3f3d0e
+Module Guid: e138d7b4-8aa1-49a7-b114-10f6d2a7fcb4
 Download Help Link: https://learn.microsoft.com/powershell/module/az.reservations
 Help Version: 1.0.0.0
 Locale: en-US
