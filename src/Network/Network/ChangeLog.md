@@ -19,6 +19,8 @@
 --->
 
 ## Upcoming Release
+
+## Version 7.18.1
 * Updated cmdlet `New-AzFirewallPolicyApplicationRule` to use HTTPS as the default protocol when creating a new FQDN Tag application rule.
 
 ## Version 7.18.0

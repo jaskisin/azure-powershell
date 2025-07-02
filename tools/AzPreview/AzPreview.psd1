@@ -12,7 +12,7 @@
 # RootModule = ''
 
 # Version number of this module.
-ModuleVersion = '14.2.0'
+ModuleVersion = '14.3.0'
 
 # Supported PSEditions
 CompatiblePSEditions = 'Core', 'Desktop'
@@ -173,31 +173,31 @@ RequiredModules = @(@{ModuleName = 'Az.Accounts'; ModuleVersion = '5.1.1'; },
             @{ModuleName = 'Az.Marketplace'; RequiredVersion = '0.5.2'; }, 
             @{ModuleName = 'Az.MarketplaceOrdering'; RequiredVersion = '2.2.0'; }, 
             @{ModuleName = 'Az.Mdp'; RequiredVersion = '0.1.2'; }, 
-            @{ModuleName = 'Az.Migrate'; RequiredVersion = '2.8.0'; }, 
+            @{ModuleName = 'Az.Migrate'; RequiredVersion = '2.8.1'; }, 
             @{ModuleName = 'Az.MixedReality'; RequiredVersion = '0.3.0'; }, 
             @{ModuleName = 'Az.MobileNetwork'; RequiredVersion = '0.5.0'; }, 
             @{ModuleName = 'Az.MongoDB'; RequiredVersion = '0.1.0'; }, 
             @{ModuleName = 'Az.Monitor'; RequiredVersion = '6.0.2'; }, 
             @{ModuleName = 'Az.MonitoringSolutions'; RequiredVersion = '0.2.0'; }, 
-            @{ModuleName = 'Az.MySql'; RequiredVersion = '1.4.0'; }, 
+            @{ModuleName = 'Az.MySql'; RequiredVersion = '1.5.0'; }, 
             @{ModuleName = 'Az.NeonPostgres'; RequiredVersion = '0.2.0'; }, 
-            @{ModuleName = 'Az.NetAppFiles'; RequiredVersion = '0.24.0'; }, 
-            @{ModuleName = 'Az.Network'; RequiredVersion = '7.18.0'; }, 
+            @{ModuleName = 'Az.NetAppFiles'; RequiredVersion = '0.24.1'; }, 
+            @{ModuleName = 'Az.Network'; RequiredVersion = '7.18.1'; }, 
             @{ModuleName = 'Az.NetworkAnalytics'; RequiredVersion = '0.1.2'; }, 
-            @{ModuleName = 'Az.NetworkCloud'; RequiredVersion = '1.1.0'; }, 
+            @{ModuleName = 'Az.NetworkCloud'; RequiredVersion = '1.2.0'; }, 
             @{ModuleName = 'Az.NetworkFunction'; RequiredVersion = '0.2.0'; }, 
             @{ModuleName = 'Az.NewRelic'; RequiredVersion = '0.2.1'; }, 
             @{ModuleName = 'Az.Nginx'; RequiredVersion = '1.2.0'; }, 
             @{ModuleName = 'Az.NotificationHubs'; RequiredVersion = '1.2.0'; }, 
             @{ModuleName = 'Az.OperationalInsights'; RequiredVersion = '3.3.0'; }, 
-            @{ModuleName = 'Az.Oracle'; RequiredVersion = '1.1.1'; }, 
+            @{ModuleName = 'Az.Oracle'; RequiredVersion = '1.2.0'; }, 
             @{ModuleName = 'Az.Orbital'; RequiredVersion = '0.2.0'; }, 
             @{ModuleName = 'Az.PaloAltoNetworks'; RequiredVersion = '0.3.1'; }, 
             @{ModuleName = 'Az.Peering'; RequiredVersion = '0.5.0'; }, 
             @{ModuleName = 'Az.Pinecone'; RequiredVersion = '0.1.0'; }, 
             @{ModuleName = 'Az.PolicyInsights'; RequiredVersion = '1.7.1'; }, 
             @{ModuleName = 'Az.Portal'; RequiredVersion = '0.4.0'; }, 
-            @{ModuleName = 'Az.PostgreSql'; RequiredVersion = '1.3.0'; }, 
+            @{ModuleName = 'Az.PostgreSql'; RequiredVersion = '1.4.0'; }, 
             @{ModuleName = 'Az.PowerBIEmbedded'; RequiredVersion = '2.1.0'; }, 
             @{ModuleName = 'Az.PrivateDns'; RequiredVersion = '1.2.0'; }, 
             @{ModuleName = 'Az.ProviderHub'; RequiredVersion = '0.4.0'; }, 
