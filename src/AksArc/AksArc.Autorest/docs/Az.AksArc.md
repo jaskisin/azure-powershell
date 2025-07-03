@@ -1,6 +1,6 @@
 ---
 Module Name: Az.AksArc
-Module Guid: 0e2f96c9-10b2-4c68-b181-d29e3bdfdeed
+Module Guid: f07cd364-a328-4a35-ad6e-60621e0f2f7d
 Download Help Link: https://learn.microsoft.com/powershell/module/az.aksarc
 Help Version: 1.0.0.0
 Locale: en-US

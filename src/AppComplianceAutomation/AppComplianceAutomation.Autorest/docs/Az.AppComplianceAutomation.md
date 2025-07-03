@@ -1,6 +1,6 @@
 ---
 Module Name: Az.AppComplianceAutomation
-Module Guid: d69cf3fb-db51-4a8c-b31e-8bfed4f79fa4
+Module Guid: 12c992ce-90e0-4989-89ed-70a61ccd8412
 Download Help Link: https://learn.microsoft.com/powershell/module/az.appcomplianceautomation
 Help Version: 1.0.0.0
 Locale: en-US

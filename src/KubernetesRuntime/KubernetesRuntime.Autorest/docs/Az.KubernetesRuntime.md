@@ -1,6 +1,6 @@
 ---
 Module Name: Az.KubernetesRuntime
-Module Guid: 16846b06-e1a9-4928-95ad-8a030e6c28e5
+Module Guid: 27b2c44a-789e-40a4-8cca-2c0b53364db7
 Download Help Link: https://learn.microsoft.com/powershell/module/az.kubernetesruntime
 Help Version: 1.0.0.0
 Locale: en-US
