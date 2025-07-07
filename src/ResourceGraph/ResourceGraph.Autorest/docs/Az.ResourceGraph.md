@@ -1,6 +1,6 @@
 ---
 Module Name: Az.ResourceGraph
-Module Guid: e347e012-d131-46ad-b66c-3ce95baa53fd
+Module Guid: 54aa53ce-c2b2-413f-adb0-25ab8bb1da39
 Download Help Link: https://learn.microsoft.com/powershell/module/az.resourcegraph
 Help Version: 1.0.0.0
 Locale: en-US

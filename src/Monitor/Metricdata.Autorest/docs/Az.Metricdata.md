@@ -1,6 +1,6 @@
 ---
 Module Name: Az.Metricdata
-Module Guid: 33e27121-dd7e-4fcd-a287-d85d60a35c75
+Module Guid: d303999d-c7c4-456e-8d29-098bcf31422f
 Download Help Link: https://learn.microsoft.com/powershell/module/az.metricdata
 Help Version: 1.0.0.0
 Locale: en-US

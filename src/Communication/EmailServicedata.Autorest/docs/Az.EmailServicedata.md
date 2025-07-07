@@ -1,6 +1,6 @@
 ---
 Module Name: Az.EmailServicedata
-Module Guid: 5168d495-7a9d-45d6-ab8f-9127f05ee378
+Module Guid: bcafe8d2-276f-4212-98ba-53d5d7ee751e
 Download Help Link: https://learn.microsoft.com/powershell/module/az.emailservicedata
 Help Version: 1.0.0.0
 Locale: en-US

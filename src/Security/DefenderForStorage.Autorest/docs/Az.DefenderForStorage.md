@@ -1,6 +1,6 @@
 ---
 Module Name: Az.DefenderForStorage
-Module Guid: 51b17cfa-b6cf-4bf1-afd7-a55f8cb67a6b
+Module Guid: 505381bb-79bd-4bcb-a09a-e2906eff23ee
 Download Help Link: https://learn.microsoft.com/powershell/module/az.defenderforstorage
 Help Version: 1.0.0.0
 Locale: en-US

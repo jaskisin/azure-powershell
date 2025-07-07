@@ -1,6 +1,6 @@
 ---
 Module Name: Az.StorageAction
-Module Guid: 78dad367-40fa-497c-afc0-831ee12e5038
+Module Guid: a253b2b3-16b2-4ebe-9699-9681f7b28d6f
 Download Help Link: https://learn.microsoft.com/powershell/module/az.storageaction
 Help Version: 1.0.0.0
 Locale: en-US
