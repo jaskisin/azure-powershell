@@ -62,7 +62,7 @@ pac60,[ps=true;customSource=https://azpspackage.blob.core.windows.net/docs-relea
 pac61,[ps=true;customSource=https://azpspackage.blob.core.windows.net/docs-release/Az.DedicatedHsm.0.4.0.zip;sourceType=sa]Az.DedicatedHsm,0.4.0
 pac62,[ps=true;customSource=https://azpspackage.blob.core.windows.net/docs-release/Az.DependencyMap.0.1.0.zip;sourceType=sa]Az.DependencyMap,0.1.0
 pac63,[ps=true;customSource=https://azpspackage.blob.core.windows.net/docs-release/Az.DesktopVirtualization.5.4.1.zip;sourceType=sa]Az.DesktopVirtualization,5.4.1
-pac64,[ps=true;customSource=https://azpspackage.blob.core.windows.net/docs-release/Az.DevCenter.2.0.1.zip;sourceType=sa]Az.DevCenter,2.0.1
+pac64,[ps=true;customSource=https://azpspackage.blob.core.windows.net/docs-release/Az.DevCenter.2.0.2.zip;sourceType=sa]Az.DevCenter,2.0.2
 pac65,[ps=true;customSource=https://azpspackage.blob.core.windows.net/docs-release/Az.DeviceProvisioningServices.0.10.4.zip;sourceType=sa]Az.DeviceProvisioningServices,0.10.4
 pac66,[ps=true;customSource=https://azpspackage.blob.core.windows.net/docs-release/Az.DeviceRegistry.0.1.1.zip;sourceType=sa]Az.DeviceRegistry,0.1.1
 pac67,[ps=true;customSource=https://azpspackage.blob.core.windows.net/docs-release/Az.DeviceUpdate.0.2.0.zip;sourceType=sa]Az.DeviceUpdate,0.2.0
@@ -119,7 +119,7 @@ pac117,[ps=true;customSource=https://azpspackage.blob.core.windows.net/docs-rele
 pac118,[ps=true;customSource=https://azpspackage.blob.core.windows.net/docs-release/Az.Marketplace.0.5.2.zip;sourceType=sa]Az.Marketplace,0.5.2
 pac119,[ps=true;customSource=https://azpspackage.blob.core.windows.net/docs-release/Az.MarketplaceOrdering.2.2.0.zip;sourceType=sa]Az.MarketplaceOrdering,2.2.0
 pac120,[ps=true;customSource=https://azpspackage.blob.core.windows.net/docs-release/Az.Mdp.0.1.2.zip;sourceType=sa]Az.Mdp,0.1.2
-pac121,[ps=true;customSource=https://azpspackage.blob.core.windows.net/docs-release/Az.Migrate.2.8.0.zip;sourceType=sa]Az.Migrate,2.8.0
+pac121,[ps=true;customSource=https://azpspackage.blob.core.windows.net/docs-release/Az.Migrate.2.8.1.zip;sourceType=sa]Az.Migrate,2.8.1
 pac122,[ps=true;customSource=https://azpspackage.blob.core.windows.net/docs-release/Az.MixedReality.0.3.0.zip;sourceType=sa]Az.MixedReality,0.3.0
 pac123,[ps=true;customSource=https://azpspackage.blob.core.windows.net/docs-release/Az.MobileNetwork.0.5.0.zip;sourceType=sa]Az.MobileNetwork,0.5.0
 
