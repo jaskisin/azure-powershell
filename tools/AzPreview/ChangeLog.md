@@ -1,3 +1,56 @@
+## 14.3.0 - August 2025
+#### Az.ArizeAI 1.0.0
+* General availability for module Az.ArizeAI
+
+#### Az.Compute 10.1.0
+* Support for Metadata Security Protocol (MSP) support for Gallery
+    - Added new cmdlets 'New-AzGalleryInVmAccessControlProfile', 'Get-AzGalleryInVmAccessControlProfile', 'Update-AzGalleryInVmAccessControlProfile', and 'Remove-AzGalleryInVmAccessControlProfile' to manage In-VM Access Control Profiles in Azure Compute Gallery.
+    - Added new cmdlets 'New-AzGalleryInVmAccessControlProfileVersion', 'Get-AzGalleryInVmAccessControlProfileVersion', 'Update-AzGalleryInVmAccessControlProfileVersion', and 'Remove-AzGalleryInVmAccessControlProfileVersion' to manage In-VM Access Control Profile Versions in Azure Compute Gallery.
+    - Added new cmdlet 'New0AzGalleryInVmAccessControlProfileVersionConfig' to create a local configuration object for In-VM Access Control Profile Version.
+    - Added new cmdlets 'Add-AzGalleryInVmAccessControlProfileVersionRulesPrivilege' and 'Remove-AzGalleryInVmAccessControlProfileVersionRulesPrivilege' to manage privileges in In-VM Access Control Profile Version.
+    - Added new cmdlets 'Add-AzGalleryInVmAccessControlProfileVersionRulesRole' and 'Remove-AzGalleryInVmAccessControlProfileVersionRulesRole' to manage roles in In-VM Access Control Profile Version.
+    - Added new cmdlets 'Add-AzGalleryInVmAccessControlProfileVersionRulesIdentity' and 'Remove-AzGalleryInVmAccessControlProfileVersionRulesIdentity' to manage identities in In-VM Access Control Profile Version.
+    - Added new cmdlets 'Add-AzGalleryInVmAccessControlProfileVersionRulesRoleAssignment' and 'Remove-AzGalleryInVmAccessControlProfileVersionRulesRoleAssignment' to manage role assignments in In-VM Access Control Profile Version.
+* Added '-EnableProxyAgent' parameter to 'New-AzVM' and 'New-AzVmss' simple parameter sets.
+* Added '-ProxyAgentKeyIncarnationId'parameter to 'Update-AzVmssVM' cmdlet.
+* Added new cmdlets 'Set-AzVmssProxyAgent' and 'Set-AzVMProxyAgent' to set the proxy agent settings for VM and VMSS.'
+
+#### Az.DevCenter 2.0.2
+* Added preannouncement breaking change messages.
+
+#### Az.Migrate 2.8.1
+* Fixed bugs in 'New-AzMigrateServerReplication' caused by deprecation of 'Get-AzVmSize -location'
+* Removed '-TargetStoragePathId' parameter from command 'New-AzMigrateLocalDiskMappingObject' until the feature to associate each disk to their own storage container path is supported.
+* Added '-SourceApplianceName' and '-TargetApplianceName' as required parameters to command 'New-AzMigrateLocalServerReplication' to allow users to specify appliance pairs of their choosing.
+* Enhanced resource validations in 'Initialize-AzMigrateLocalReplicationInfrastructure' and 'New-AzMigrateLocalServerReplication'.
+
+#### Az.MySql 1.5.0
+- Aligned with SimplySql, use a PSCredential object instead of UserName/Password parameters when calling Open-MySQLConnection
+- Introduced a Timeout value when running Test-AzMySqlFlexibleServerConnect with long running query
+
+#### Az.NetAppFiles 0.24.1
+* Updated to api-version 2025-03-01
+
+#### Az.Network 7.19.0
+* Updated cmdlet 'New-AzFirewallPolicyApplicationRule' to use HTTPS as the default protocol when creating a new FQDN Tag application rule.
+* Added 'EnableDnstapLogging' parameter to 'New-AzFirewall'
+
+#### Az.NetworkCloud 1.2.0
+* Upgraded API version to 2025-02-01
+
+#### Az.Oracle 1.2.0
+* Upgraded to the stable version 2025-03-01
+
+#### Az.PostgreSql 1.4.0
+- Aligned with SimplySql, use a PSCredential object instead of UserName/Password parameters when calling Open-PostGreConnection
+- Introduced a Timeout value when running Test-AzPostgreSqlFlexibleServerConnect with long running query
+
+#### Az.StackHCI 2.6.1
+* Used fully qualified computer name and added warning for user to upgrade to solution.
+
+#### Az.Synapse 3.2.2
+* Fixed an error when remove artifact throw 'ArgumentNullException'
+
 ## 14.2.0 - July 2025
 #### Az.Accounts 5.1.1
 * Updated the date in the message about multi-factor authentication (MFA). For more details, see https://go.microsoft.com/fwlink/?linkid=2276971
