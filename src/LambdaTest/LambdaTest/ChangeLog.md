@@ -19,6 +19,8 @@
 -->
 ## Upcoming Release
 
+## Version 0.1.1
+
 * Upgraded the API version to 2024-02-01
 
 ## Version 0.1.0
