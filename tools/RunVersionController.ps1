@@ -233,12 +233,14 @@ function Bump-AzVersion
             Write-Host "Found $currBump version bump for $($localDependency.ModuleName)"
             if ($currBump -eq [PSVersion]::MAJOR)
             {
-                Write-Host "Module name is: $($localDependency.ModuleName)"
-                Write-Host "Local Version is: $localVersion "
-                Write-Host "PSGallery Version is: $($galleryVersion.ToString()) "
-                Write-Host "is GA Version: $($localVersion -eq '1.0.0') "
-                
-                $versionBump = [PSVersion]::MAJOR
+                # if the module is GAed, we don't consider it's a major bump.
+                if($localVersion -eq '1.0.0'){
+                    if($versionBump -ne [PSVersion]::MAJOR){
+                        $versionBump = [PSVersion]::MINOR
+                    }
+                }else{
+                    $versionBump = [PSVersion]::MAJOR
+                }
             }
             elseif ($currBump -eq [PSVersion]::MINOR -and $versionBump -ne [PSVersion]::MAJOR)
             {
