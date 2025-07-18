@@ -1,6 +1,6 @@
 ---
 Module Name: Az.StackHCIVM
-Module Guid: 7389f67c-ec9d-4c13-9c9a-308834413af6
+Module Guid: 3d2770a4-5d25-4532-ba58-4b8c4def89ed
 Download Help Link: https://learn.microsoft.com/powershell/module/az.stackhcivm
 Help Version: 1.0.0.0
 Locale: en-US

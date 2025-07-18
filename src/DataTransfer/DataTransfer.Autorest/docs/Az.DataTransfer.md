@@ -1,6 +1,6 @@
 ---
 Module Name: Az.DataTransfer
-Module Guid: 88c154ed-ced9-4381-b277-441566a6c538
+Module Guid: d4109ae5-a449-45ca-964f-bbbb940db8bd
 Download Help Link: https://learn.microsoft.com/powershell/module/az.datatransfer
 Help Version: 1.0.0.0
 Locale: en-US

@@ -1,6 +1,6 @@
 ---
 Module Name: Az.DigitalTwins
-Module Guid: 6bc64f2a-9bda-4094-b122-8af6079f81ba
+Module Guid: b2fa163a-e651-4316-819f-eab7a9d49c98
 Download Help Link: https://learn.microsoft.com/powershell/module/az.digitaltwins
 Help Version: 1.0.0.0
 Locale: en-US

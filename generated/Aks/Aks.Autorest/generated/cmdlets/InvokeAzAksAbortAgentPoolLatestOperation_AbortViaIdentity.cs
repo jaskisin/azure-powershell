@@ -44,15 +44,6 @@ namespace Microsoft.Azure.PowerShell.Cmdlets.Aks.Cmdlets
         /// <summary>A dictionary to carry over additional data for pipeline.</summary>
         private global::System.Collections.Generic.Dictionary<global::System.String,global::System.Object> _extensibleParameters = new System.Collections.Generic.Dictionary<string, object>();
 
-        /// <summary>A buffer to record first returned object in response.</summary>
-        private object _firstResponse = null;
-
-        /// <summary>
-        /// A flag to tell whether it is the first returned object in a call. Zero means no response yet. One means 1 returned object.
-        /// Two means multiple returned objects in response.
-        /// </summary>
-        private int _responseSize = 0;
-
         /// <summary>when specified, runs this cmdlet as a PowerShell job</summary>
         [global::System.Management.Automation.Parameter(Mandatory = false, HelpMessage = "Run the command as a job")]
         [global::Microsoft.Azure.PowerShell.Cmdlets.Aks.Category(global::Microsoft.Azure.PowerShell.Cmdlets.Aks.ParameterCategory.Runtime)]
@@ -172,6 +163,16 @@ namespace Microsoft.Azure.PowerShell.Cmdlets.Aks.Cmdlets
         partial void overrideOnNoContent(global::System.Net.Http.HttpResponseMessage responseMessage, ref global::System.Threading.Tasks.Task<bool> returnNow);
 
         /// <summary>
+        /// <c>overrideOnOk</c> will be called before the regular onOk has been processed, allowing customization of what happens
+        /// on that response. Implement this method in a partial class to enable this behavior
+        /// </summary>
+        /// <param name="responseMessage">the raw response message as an global::System.Net.Http.HttpResponseMessage.</param>
+        /// <param name="returnNow">/// Determines if the rest of the onOk method should be processed, or if the method should return
+        /// immediately (set to true to skip further processing )</param>
+
+        partial void overrideOnOk(global::System.Net.Http.HttpResponseMessage responseMessage, ref global::System.Threading.Tasks.Task<bool> returnNow);
+
+        /// <summary>
         /// (overrides the default BeginProcessing method in global::System.Management.Automation.PSCmdlet)
         /// </summary>
         protected override void BeginProcessing()
@@ -214,11 +215,6 @@ namespace Microsoft.Azure.PowerShell.Cmdlets.Aks.Cmdlets
         /// <summary>Performs clean-up after the command execution</summary>
         protected override void EndProcessing()
         {
-            if (1 ==_responseSize)
-            {
-                // Flush buffer
-                WriteObject(_firstResponse);
-            }
             var telemetryInfo = Microsoft.Azure.PowerShell.Cmdlets.Aks.Module.Instance.GetTelemetryInfo?.Invoke(__correlationId);
             if (telemetryInfo != null)
             {
@@ -434,7 +430,7 @@ namespace Microsoft.Azure.PowerShell.Cmdlets.Aks.Cmdlets
                     await ((Microsoft.Azure.PowerShell.Cmdlets.Aks.Runtime.IEventListener)this).Signal(Microsoft.Azure.PowerShell.Cmdlets.Aks.Runtime.Events.CmdletBeforeAPICall); if( ((Microsoft.Azure.PowerShell.Cmdlets.Aks.Runtime.IEventListener)this).Token.IsCancellationRequested ) { return; }
                     if (InputObject?.Id != null)
                     {
-                        await this.Client.AgentPoolsAbortLatestOperationViaIdentity(InputObject.Id, onNoContent, onDefault, this, Pipeline);
+                        await this.Client.AgentPoolsAbortLatestOperationViaIdentity(InputObject.Id, onNoContent, onOk, onDefault, this, Pipeline);
                     }
                     else
                     {
@@ -455,7 +451,7 @@ namespace Microsoft.Azure.PowerShell.Cmdlets.Aks.Cmdlets
                         {
                             ThrowTerminatingError( new global::System.Management.Automation.ErrorRecord(new global::System.Exception("InputObject has null value for InputObject.AgentPoolName"),string.Empty, global::System.Management.Automation.ErrorCategory.InvalidArgument, InputObject) );
                         }
-                        await this.Client.AgentPoolsAbortLatestOperation(InputObject.SubscriptionId ?? null, InputObject.ResourceGroupName ?? null, InputObject.ResourceName ?? null, InputObject.AgentPoolName ?? null, onNoContent, onDefault, this, Pipeline);
+                        await this.Client.AgentPoolsAbortLatestOperation(InputObject.SubscriptionId ?? null, InputObject.ResourceGroupName ?? null, InputObject.ResourceName ?? null, InputObject.AgentPoolName ?? null, onNoContent, onOk, onDefault, this, Pipeline);
                     }
                     await ((Microsoft.Azure.PowerShell.Cmdlets.Aks.Runtime.IEventListener)this).Signal(Microsoft.Azure.PowerShell.Cmdlets.Aks.Runtime.Events.CmdletAfterAPICall); if( ((Microsoft.Azure.PowerShell.Cmdlets.Aks.Runtime.IEventListener)this).Token.IsCancellationRequested ) { return; }
                 }
@@ -554,6 +550,30 @@ namespace Microsoft.Azure.PowerShell.Cmdlets.Aks.Cmdlets
                     return ;
                 }
                 // onNoContent - response for 204 /
+                if (true == MyInvocation?.BoundParameters?.ContainsKey("PassThru"))
+                {
+                    WriteObject(true);
+                }
+            }
+        }
+
+        /// <summary>a delegate that is called when the remote service returns 200 (OK).</summary>
+        /// <param name="responseMessage">the raw response message as an global::System.Net.Http.HttpResponseMessage.</param>
+        /// <returns>
+        /// A <see cref="global::System.Threading.Tasks.Task" /> that will be complete when handling of the method is completed.
+        /// </returns>
+        private async global::System.Threading.Tasks.Task onOk(global::System.Net.Http.HttpResponseMessage responseMessage)
+        {
+            using( NoSynchronizationContext )
+            {
+                var _returnNow = global::System.Threading.Tasks.Task<bool>.FromResult(false);
+                overrideOnOk(responseMessage, ref _returnNow);
+                // if overrideOnOk has returned true, then return right away.
+                if ((null != _returnNow && await _returnNow))
+                {
+                    return ;
+                }
+                // onOk - response for 200 /
                 if (true == MyInvocation?.BoundParameters?.ContainsKey("PassThru"))
                 {
                     WriteObject(true);
