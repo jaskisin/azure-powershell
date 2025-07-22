@@ -1,6 +1,6 @@
 ---
 Module Name: Az.ComputeSchedule
-Module Guid: 0b7e8529-58ce-4721-ac94-e0e474e9def5
+Module Guid: cdee834b-82ff-43f1-8f31-325e71c89501
 Download Help Link: https://learn.microsoft.com/powershell/module/az.computeschedule
 Help Version: 1.0.0.0
 Locale: en-US
