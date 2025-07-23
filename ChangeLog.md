@@ -1,3 +1,121 @@
+## 14.3.0 - August 2025
+#### Az.Accounts 5.2.0
+* Added new parameter '-ClaimsChallenge' to 'Connect-AzAccount' to support claims challenge authentication for MFA.
+* Refined the error message when a cmdlet fails because of policy violations about Multi-Factor Authentication (MFA) to provide more actionable guidance.
+
+#### Az.ArizeAI 1.0.0
+* General availability for module Az.ArizeAI
+* Upgraded the API version to 2024-10-01
+
+#### Az.Compute 10.1.0
+* Support for Metadata Security Protocol (MSP) support for Gallery
+    - Added new cmdlets 'New-AzGalleryInVmAccessControlProfile', 'Get-AzGalleryInVmAccessControlProfile', 'Update-AzGalleryInVmAccessControlProfile', and 'Remove-AzGalleryInVmAccessControlProfile' to manage In-VM Access Control Profiles in Azure Compute Gallery.
+    - Added new cmdlets 'New-AzGalleryInVmAccessControlProfileVersion', 'Get-AzGalleryInVmAccessControlProfileVersion', 'Update-AzGalleryInVmAccessControlProfileVersion', and 'Remove-AzGalleryInVmAccessControlProfileVersion' to manage In-VM Access Control Profile Versions in Azure Compute Gallery.
+    - Added new cmdlet 'New0AzGalleryInVmAccessControlProfileVersionConfig' to create a local configuration object for In-VM Access Control Profile Version.
+    - Added new cmdlets 'Add-AzGalleryInVmAccessControlProfileVersionRulesPrivilege' and 'Remove-AzGalleryInVmAccessControlProfileVersionRulesPrivilege' to manage privileges in In-VM Access Control Profile Version.
+    - Added new cmdlets 'Add-AzGalleryInVmAccessControlProfileVersionRulesRole' and 'Remove-AzGalleryInVmAccessControlProfileVersionRulesRole' to manage roles in In-VM Access Control Profile Version.
+    - Added new cmdlets 'Add-AzGalleryInVmAccessControlProfileVersionRulesIdentity' and 'Remove-AzGalleryInVmAccessControlProfileVersionRulesIdentity' to manage identities in In-VM Access Control Profile Version.
+    - Added new cmdlets 'Add-AzGalleryInVmAccessControlProfileVersionRulesRoleAssignment' and 'Remove-AzGalleryInVmAccessControlProfileVersionRulesRoleAssignment' to manage role assignments in In-VM Access Control Profile Version.
+* Added '-EnableProxyAgent' parameter to 'New-AzVM' and 'New-AzVmss' simple parameter sets.
+* Added '-ProxyAgentKeyIncarnationId'parameter to 'Update-AzVmssVM' cmdlet.
+* Added new cmdlets 'Set-AzVmssProxyAgent' and 'Set-AzVMProxyAgent' to set the proxy agent settings for VM and VMSS.'
+
+#### Az.DataLakeStore 1.5.0
+* Added a new cmdlet GetAzureDataLakeStoreDeletedItemWithtoken to support pagination in  GetAzureDataLakeStoreDeletedItem
+
+#### Az.DevCenter 2.0.2
+* Added preannouncement breaking change messages.
+
+#### Az.EventHub 5.4.0
+* Added new cmdlets for Eventhubnetworksecurityperimeterconfiguration - 'Get-AzEventHubNetworkSecurityPerimeterConfigurationsForAssociation', 'Get-AzEventHubNetworkSecurityPerimeterConfiguration'
+
+#### Az.LambdaTest 1.0.0
+* General availability for module Az.LambdaTest
+* Upgraded the API version to 2024-02-01
+
+#### Az.ManagedServices 3.1.2
+* Update the outputs of breaking change announcements.
+
+#### Az.Migrate 2.8.1
+* Fixed bugs in 'New-AzMigrateServerReplication' caused by deprecation of 'Get-AzVmSize -location'
+* Removed '-TargetStoragePathId' parameter from command 'New-AzMigrateLocalDiskMappingObject' until the feature to associate each disk to their own storage container path is supported.
+* Added '-SourceApplianceName' and '-TargetApplianceName' as required parameters to command 'New-AzMigrateLocalServerReplication' to allow users to specify appliance pairs of their choosing.
+* Enhanced resource validations in 'Initialize-AzMigrateLocalReplicationInfrastructure' and 'New-AzMigrateLocalServerReplication'.
+
+#### Az.Monitor 6.0.3
+* Added breaking change announcement for below cmdlets from single object or fixed array to list.
+  - 'Get-AzActivityLogAlert'
+  - 'New-AzActivityLogAlert'
+  - 'Update-AzActivityLogAlert'
+  - 'New-AzActivityLogAlertAlertRuleAnyOfOrLeafConditionObject'
+  - 'New-AzActivityLogAlertAlertRuleLeafConditionObject'
+  - 'Get-AzAutoscalePredictiveMetric'
+  - 'Get-AzAutoscaleSetting'
+  - 'New-AzAutoscaleNotificationObject'
+  - 'New-AzAutoscaleProfileObject'
+  - 'New-AzAutoscaleScaleRuleMetricDimensionObject'
+  - 'New-AzAutoscaleScaleRuleObject'
+  - 'New-AzAutoscaleSetting'
+  - 'Update-AzAutoscaleSetting'
+  - 'Get-AzMonitorWorkspace'
+  - 'New-AzMonitorWorkspace'
+  - 'Update-AzMonitorWorkspace'
+  - 'New-AzDiagnosticSetting'
+  - 'New-AzSubscriptionDiagnosticSetting'
+  - 'Get-AzDiagnosticSetting'
+  - 'Get-AzDiagnosticSettingCategory'
+  - 'Get-AzSubscriptionDiagnosticSetting'
+  - 'Get-AzScheduledQueryRule'
+  - 'New-AzScheduledQueryRule'
+  - 'New-AzScheduledQueryRuleConditionObject'
+  - 'New-AzScheduledQueryRuleDimensionObject'
+  - 'Update-AzScheduledQueryRule'
+
+#### Az.MySql 1.5.0
+- Aligned with SimplySql, use a PSCredential object instead of UserName/Password parameters when calling Open-MySQLConnection
+- Introduced a Timeout value when running Test-AzMySqlFlexibleServerConnect with long running query
+
+#### Az.Network 7.19.0
+* Returned appgw and agc in waf policy
+* Updated cmdlet 'New-AzFirewallPolicyApplicationRule' to use HTTPS as the default protocol when creating a new FQDN Tag application rule.
+* Added 'EnableDnstapLogging' parameter to 'New-AzFirewall'
+
+#### Az.NetworkCloud 1.2.0
+* Upgraded API version to 2025-02-01
+
+#### Az.Oracle 1.2.0
+* Upgraded to the stable version 2025-03-01
+
+#### Az.PostgreSql 1.4.0
+- Aligned with SimplySql, use a PSCredential object instead of UserName/Password parameters when calling Open-PostGreConnection
+- Introduced a Timeout value when running Test-AzPostgreSqlFlexibleServerConnect with long running query
+
+#### Az.Relay 2.1.2
+* Update the outputs of breaking change announcements.
+
+#### Az.Resources 8.1.0
+* Added functionality for cmdlet 'GetAzureResourceGroup'[#27865]
+* Added breaking change announcement for below cmdlets from array to list.
+  - 'Get-AzRoleManagementPolicy'
+  - 'Update-AzRoleManagementPolicy'
+* Added support for exporting resource group templates as Bicep files
+    - Added 'OutputFormat' parameter to 'Export-AzResourceGroup' cmdlet
+    - Supported values: 'Json' (default), 'Bicep'
+
+#### Az.ServiceFabric 3.6.0
+* Added parameter 'Location' to allow users to specify a different node type location than the resource group location in cmdlet 'Add-AzServiceFabricNodeType'.
+* Added parameter 'VmSize' to allow for in-place sku swap for cmdlet 'Set-AzServiceFabricManagedNodeType'.
+* Updated SFMC to latest api preview version '2025-03-01-preview'
+
+#### Az.StackHCI 2.6.1
+* Used fully qualified computer name and added warning for user to upgrade to solution.
+
+#### Az.StorageSync 2.5.1
+* Fixed security bug in token acquisition for MI server registration
+
+#### Az.Synapse 3.2.2
+* Fixed an error when remove artifact throw 'ArgumentNullException'
+
 ## 14.2.0 - July 2025
 #### Az.Accounts 5.1.1
 * Updated the date in the message about multi-factor authentication (MFA). For more details, see https://go.microsoft.com/fwlink/?linkid=2276971
