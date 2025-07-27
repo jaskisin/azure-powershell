@@ -20,6 +20,8 @@
 
 -->
 ## Upcoming Release
+
+## Version 10.1.1
 * Compute DiskRP related cmdlets will now use 2025-01-02 version of the DiskRP API.
 
 ## Version 10.1.0

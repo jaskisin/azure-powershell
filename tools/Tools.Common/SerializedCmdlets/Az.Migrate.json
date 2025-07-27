@@ -1,6 +1,6 @@
 {
   "ModuleName": "Az.Migrate",
-  "ModuleVersion": "2.8.0",
+  "ModuleVersion": "2.8.1",
   "Cmdlets": [
     {
       "VerbName": "Get",
@@ -14297,8 +14297,7 @@
               "IsDynamic": "System.Nullable`1[System.Boolean]",
               "DiskPhysicalSectorSize": "System.Nullable`1[System.Int64]",
               "DiskFileFormat": "System.String",
-              "DiskId": "System.String",
-              "StorageContainerId": "System.String"
+              "DiskId": "System.String"
             },
             "Methods": [
               {
@@ -14350,10 +14349,6 @@
                   },
                   {
                     "Name": "diskPhysicalSectorSize",
-                    "Type": "System.Reflection.RuntimeParameterInfo"
-                  },
-                  {
-                    "Name": "storageContainerId",
                     "Type": "System.Reflection.RuntimeParameterInfo"
                   }
                 ]
@@ -32519,8 +32514,7 @@
         "IsDynamic": "System.Nullable`1[System.Boolean]",
         "DiskPhysicalSectorSize": "System.Nullable`1[System.Int64]",
         "DiskFileFormat": "System.String",
-        "DiskId": "System.String",
-        "StorageContainerId": "System.String"
+        "DiskId": "System.String"
       },
       "Methods": [
         {
@@ -32572,10 +32566,6 @@
             },
             {
               "Name": "diskPhysicalSectorSize",
-              "Type": "System.Reflection.RuntimeParameterInfo"
-            },
-            {
-              "Name": "storageContainerId",
               "Type": "System.Reflection.RuntimeParameterInfo"
             }
           ]
