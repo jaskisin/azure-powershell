@@ -12,39 +12,35 @@ namespace VersionController.Netcore.Models
         /// Get the version of latest Az.Accounts in LTS status from PSGallery
         /// </summary>
         /// <returns></returns>
-        internal static string GetLatestVersionFromPSGallery(string moduleName, ReleaseType releaseType = ReleaseType.STS)
+        internal static string GetLatestAccountsVersionFromPSGallery(ReleaseType releaseType = ReleaseType.STS)
         {
-            string version = null;
-            string findModuleScript;
-                
-            if (!string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable("DEFAULT_PS_REPOSITORY_URL")))
+            var script = releaseType == ReleaseType.STS
+                ? $"Find-PSResource -Name Az.Accounts -Version *"
+                : $"Find-PSResource -Name Az -Version *";
+
+            var results = InvokePowerShellScript<PSObject>(script);
+
+            var filteredResults = releaseType == ReleaseType.LTS
+                ? results.Where(r => new AzurePSVersion(r.Properties["Version"].Value.ToString()).Major % 2 == 0)
+                : results;
+
+            var sortedResults = filteredResults.OrderByDescending(r => new AzurePSVersion(r.Properties["Version"].Value.ToString()));
+
+            if (!sortedResults.Any())
             {
-                string repository = System.Environment.GetEnvironmentVariable("DEFAULT_PS_REPOSITORY_NAME");
-                findModuleScript = @"
-$AccessTokenSecureString = $env:SYSTEM_ACCESS_TOKEN | ConvertTo-SecureString -AsPlainText -Force;
-$credentialsObject = [pscredential]::new('ONEBRANCH_TOKEN', $AccessTokenSecureString);
-";
-                findModuleScript += releaseType == ReleaseType.STS 
-                    ? $"Find-PSResource -Name {moduleName} -Repository {repository} -Version * -Credential $credentialsObject" 
-                    : $"Find-PSResource -Name Az -Repository {repository} -Version * -Credential $credentialsObject";
+                return null;
             }
-            else
+
+            var latestModule = sortedResults.First();
+            if (releaseType == ReleaseType.STS)
             {
-                string repository = "PSGallery";
-                findModuleScript = releaseType == ReleaseType.STS ? $"Find-PSResource -Name {moduleName} -Repository {repository} -Version *" : $"Find-PSResource -Name Az -Repository {repository} -Version *";
+                return latestModule.Properties["Version"].Value.ToString();
             }
-            string filterRequiredReleaseTypeScript = releaseType == ReleaseType.STS ? "" : "| Where-Object {$_.Version.Major % 2 -eq 0}";
-            string sortModuleScript = "| Sort-Object {$_.Version} -Descending";
-            string getLastModuleVersionScript = releaseType == ReleaseType.STS ? 
-                $"({findModuleScript}{filterRequiredReleaseTypeScript}{sortModuleScript})[0].Version" :
-                $"(({findModuleScript}{filterRequiredReleaseTypeScript}{sortModuleScript})[0].Dependencies | Where-Object {{$_.Name -eq '{moduleName}'}})[1]";
-            using (PowerShell powershell = PowerShell.Create())
-            {
-                powershell.AddScript(getLastModuleVersionScript);
-                var cmdletResult = powershell.Invoke();
-                version = cmdletResult[0]?.ToString();
-            }
-            return version;
+
+            var dependencies = latestModule.Properties["Dependencies"].Value as System.Collections.ArrayList;
+            var accountDependency = dependencies?.Cast<PSObject>().FirstOrDefault(d => d.Properties["Name"].Value.ToString().Equals("Az.Accounts"));
+            // The dependency version is a version range, e.g. '[11.5.0, 12.0.0)', we take the lower bound.
+            return accountDependency?.Properties["VersionRange"].Value.ToString().Split(',')[0].TrimStart('[');
         }
 
         /// <summary>
@@ -53,40 +49,32 @@ $credentialsObject = [pscredential]::new('ONEBRANCH_TOKEN', $AccessTokenSecureSt
         /// <returns>A list of version</returns>
         internal static List<AzurePSVersion> GetAllVersionsFromGallery(string moduleName)
         {
-            HashSet<AzurePSVersion> galleryVersion = new HashSet<AzurePSVersion>();
-            using (PowerShell powershell = PowerShell.Create())
+            var script = $"Find-PSResource -Name {moduleName} -Prerelease";
+            var results = InvokePowerShellScript<PSObject>(script);
+            return results.Select(r => new AzurePSVersion(r.Properties["Version"].Value.ToString())).ToList();
+        }
+
+        private static IEnumerable<T> InvokePowerShellScript<T>(string script)
+        {
+            using (var powershell = PowerShell.Create())
             {
-                string findModuleScript;
-                
+                var fullScript = new System.Text.StringBuilder();
                 if (!string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable("DEFAULT_PS_REPOSITORY_URL")))
                 {
-                    string repository = System.Environment.GetEnvironmentVariable("DEFAULT_PS_REPOSITORY_NAME");
-                    findModuleScript = @"
-$AccessTokenSecureString = $env:SYSTEM_ACCESS_TOKEN | ConvertTo-SecureString -AsPlainText -Force;
-$credentialsObject = [pscredential]::new('ONEBRANCH_TOKEN', $AccessTokenSecureString);
-Find-PSResource -Name " + moduleName + " -Repository " + repository + " -Credential $credentialsObject -Prerelease";
+                    var repository = System.Environment.GetEnvironmentVariable("DEFAULT_PS_REPOSITORY_NAME");
+                    var accessToken = System.Environment.GetEnvironmentVariable("SYSTEM_ACCESS_TOKEN");
+                    fullScript.AppendLine($"$AccessToken = '{accessToken}' | ConvertTo-SecureString -AsPlainText -Force");
+                    fullScript.AppendLine($"$creds = New-Object System.Management.Automation.PSCredential('user', $AccessToken)");
+                    fullScript.AppendLine($"{script} -Repository {repository} -Credential $creds");
                 }
                 else
                 {
-                    string repository = "PSGallery";
-                    findModuleScript = $"Find-PSResource -Name {moduleName} -Repository {repository} -Prerelease";
+                    fullScript.AppendLine($"{script} -Repository PSGallery");
                 }
 
-                System.Console.WriteLine($"Find module script: {findModuleScript}");
-                
-                powershell.AddScript(findModuleScript);
-                var cmdletResult = powershell.Invoke();
-                System.Console.WriteLine($"Cmdlet result count: {cmdletResult.Count}");
-                foreach (var versionInformation in cmdletResult)
-                {
-                    System.Console.WriteLine(versionInformation);
-                    if (versionInformation.Properties["Version"]?.Value != null)
-                    {
-                        galleryVersion.Add(new AzurePSVersion(versionInformation.Properties["Version"]?.Value?.ToString()));
-                    }
-                }
+                powershell.AddScript(fullScript.ToString());
+                return powershell.Invoke<T>();
             }
-            return galleryVersion.ToList();
         }
 
 

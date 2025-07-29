@@ -112,7 +112,7 @@ namespace VersionController.Models
         {
             var localVersion = GetLocalAccountsVersion();
 
-            var version = ModuleHelper.GetLatestVersionFromPSGallery("Az.Accounts", _releaseType);
+            var version = ModuleHelper.GetLatestAccountsVersionFromPSGallery(_releaseType);
             if (!string.IsNullOrEmpty(localVersion) && !string.IsNullOrEmpty(version))
             {
                 return new System.Version(localVersion).CompareTo(value: new System.Version(version)) > 0 ? localVersion : version;
