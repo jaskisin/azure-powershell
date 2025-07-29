@@ -68,20 +68,22 @@ function Update-AzLoad {
         ${EncryptionKey},
     
         [Parameter()]
-        [Microsoft.Azure.PowerShell.Cmdlets.LoadTesting.PSArgumentCompleterAttribute("SystemAssigned", "UserAssigned")]
+        [Alias('IdentityType')]
+        [Microsoft.Azure.PowerShell.Cmdlets.LoadTesting.PSArgumentCompleterAttribute("None", "SystemAssigned", "UserAssigned", "SystemAssigned,UserAssigned")]
         [Microsoft.Azure.PowerShell.Cmdlets.LoadTesting.Category('Body')]
         [System.String]
-        # Type of managed identity.
-        ${IdentityType},
+        # Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed).
+        ${ManagedServiceIdentityType},
     
         [Parameter()]
+        [Alias('IdentityUserAssigned')]
         [Microsoft.Azure.PowerShell.Cmdlets.LoadTesting.Category('Body')]
         [Microsoft.Azure.PowerShell.Cmdlets.LoadTesting.Runtime.Info(PossibleTypes=([Microsoft.Azure.PowerShell.Cmdlets.LoadTesting.Models.IUserAssignedIdentities]))]
-        [System.Collections.Hashtable]
+        [System.String[]]
         # The list of user assigned identities associated with the resource. The user identity will be ARM resource ids.
         # The User Assigned Identity is a hashtable with keys in the form of an ARM resource id '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}.
         # The values of the keys can be empty objects ({}) to assign an identity and $null to remove an existing identity.
-        ${IdentityUserAssigned},
+        ${UserAssignedIdentity},
     
         [Parameter()]
         [Microsoft.Azure.PowerShell.Cmdlets.LoadTesting.Category('Body')]
@@ -166,12 +168,12 @@ function Update-AzLoad {
                     }
 
                     # Update the identity type only if the input does not contain the encryption identity type
-                    if($PSBoundParameters.ContainsKey('IdentityType')) {
-                        if($PSBoundParameters['IdentityType'].ToString().ToLower() -eq 'none') {
-                            $PSBoundParameters['IdentityType'] = 'SystemAssigned'
+                    if($PSBoundParameters.ContainsKey('ManagedServiceIdentityType')) {
+                        if($PSBoundParameters['ManagedServiceIdentityType'].ToString().ToLower() -eq 'none') {
+                            $PSBoundParameters['ManagedServiceIdentityType'] = 'SystemAssigned'
                         }
-                        elseif($PSBoundParameters['IdentityType'].ToString().ToLower() -eq 'userassigned') {
-                            $PSBoundParameters['IdentityType'] = 'SystemAssigned,UserAssigned'
+                        elseif($PSBoundParameters['ManagedServiceIdentityType'].ToString().ToLower() -eq 'userassigned') {
+                            $PSBoundParameters['ManagedServiceIdentityType'] = 'SystemAssigned,UserAssigned'
                         }
                     }
                 }
@@ -180,22 +182,22 @@ function Update-AzLoad {
                     $null = $PSBoundParameters.Add("EncryptionIdentityType", 'UserAssigned')  
 
                     # Update the identity type only if the input does not contain the encryption identity type
-                    if($PSBoundParameters.ContainsKey('IdentityType')) {
-                        if($PSBoundParameters['IdentityType'].ToString().ToLower() -eq 'none') {
-                            $PSBoundParameters['IdentityType'] = 'UserAssigned'
+                    if($PSBoundParameters.ContainsKey('ManagedServiceIdentityType')) {
+                        if($PSBoundParameters['ManagedServiceIdentityType'].ToString().ToLower() -eq 'none') {
+                            $PSBoundParameters['ManagedServiceIdentityType'] = 'UserAssigned'
                         }
-                        if($PSBoundParameters['IdentityType'].ToString().ToLower() -eq 'systemassigned') {
-                            $PSBoundParameters['IdentityType'] = 'SystemAssigned,UserAssigned'
+                        if($PSBoundParameters['ManagedServiceIdentityType'].ToString().ToLower() -eq 'systemassigned') {
+                            $PSBoundParameters['ManagedServiceIdentityType'] = 'SystemAssigned,UserAssigned'
                         }
 
-                        if ($PSBoundParameters.ContainsKey('IdentityUserAssigned')) {
-                            if ($null -eq $PSBoundParameters['IdentityUserAssigned']) {
-                                $PSBoundParameters['IdentityUserAssigned'] = @{}
+                        if ($PSBoundParameters.ContainsKey('UserAssignedIdentity')) {
+                            if ($null -eq $PSBoundParameters['UserAssignedIdentity']) {
+                                $PSBoundParameters['UserAssignedIdentity'] = @()
                             }
-                            $PSBoundParameters['IdentityUserAssigned'][$PSBoundParameters['EncryptionIdentityResourceId']] = @{}
+                            $PSBoundParameters['UserAssignedIdentity'] += $PSBoundParameters['UserAssignedIdentity']
                         }
                         else {
-                            $null = $PSBoundParameters.Add("IdentityUserAssigned", @{ $PSBoundParameters['EncryptionIdentityResourceId'] = @{} })
+                            $null = $PSBoundParameters.Add("UserAssignedIdentity", $PSBoundParameters['EncryptionIdentityResourceId'] )
                         }
                     }
                 }

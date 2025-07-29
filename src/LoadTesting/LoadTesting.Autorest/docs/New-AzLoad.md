@@ -15,8 +15,8 @@ Create LoadTest resource.
 ### CreateExpanded (Default)
 ```
 New-AzLoad -Name <String> -ResourceGroupName <String> -Location <String> [-SubscriptionId <String>]
- [-EncryptionIdentity <String>] [-EncryptionKey <String>] [-IdentityType <String>]
- [-IdentityUserAssigned <Hashtable>] [-Tag <Hashtable>] [-DefaultProfile <PSObject>] [-AsJob] [-NoWait]
+ [-EncryptionIdentity <String>] [-EncryptionKey <String>] [-ManagedServiceIdentityType <String>]
+ [-Tag <Hashtable>] [-UserAssignedIdentity <String[]>] [-DefaultProfile <PSObject>] [-AsJob] [-NoWait]
  [-Confirm] [-WhatIf] [<CommonParameters>]
 ```
 
@@ -159,39 +159,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -IdentityType
-Type of managed identity.
-
-```yaml
-Type: System.String
-Parameter Sets: CreateExpanded
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -IdentityUserAssigned
-The list of user assigned identities associated with the resource.
-The user identity will be ARM resource ids.
-The User Assigned Identity is a hashtable with keys in the form of an ARM resource id '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}.
-The values of the keys are empty objects ({}) in requests.
-
-```yaml
-Type: System.Collections.Hashtable
-Parameter Sets: CreateExpanded
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -JsonFilePath
 Path of Json file supplied to the Create operation
 
@@ -231,6 +198,21 @@ Parameter Sets: CreateExpanded
 Aliases:
 
 Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ManagedServiceIdentityType
+Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed).
+
+```yaml
+Type: System.String
+Parameter Sets: CreateExpanded
+Aliases: IdentityType
+
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -306,6 +288,24 @@ For example: @{key0="value0";key1=$null;key2="value2"}.
 Type: System.Collections.Hashtable
 Parameter Sets: CreateExpanded
 Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -UserAssignedIdentity
+The list of user assigned identities associated with the resource.
+The user identity will be ARM resource ids.
+The User Assigned Identity is a hashtable with keys in the form of an ARM resource id '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}.
+The values of the keys are empty objects ({}) in requests.
+
+```yaml
+Type: System.String[]
+Parameter Sets: CreateExpanded
+Aliases: IdentityUserAssigned
 
 Required: False
 Position: Named

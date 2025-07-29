@@ -63,17 +63,17 @@ directive:
       verb: Set
     remove: true
   
-  # Renaming managed identity type parameter
+  # Alias managed identity type parameter
   - where:
       parameter-name: ManagedServiceIdentityType
     set:
-      parameter-name: IdentityType
+      alias: IdentityType
   
-  # Renaming user assigned identity parameter
+  # Alias user assigned identity parameter
   - where:
-      parameter-name: IdentityUserAssignedIdentity
+      parameter-name: UserAssignedIdentity
     set:
-      parameter-name: IdentityUserAssigned
+      alias: IdentityUserAssigned
 
   # Renaming encryption key parameter
   - where:
@@ -112,11 +112,6 @@ directive:
       property-name: PropertiesEncryptionIdentityType
     set:
       property-name: EncryptionIdentityType
-
-  - where:
-      property-name: ManagedServiceIdentityType
-    set:
-      property-name: IdentityType
 
   # formatting the output
   - where:
